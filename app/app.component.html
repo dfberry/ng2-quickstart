@@ -6,3 +6,7 @@
 <input type="text" [value]="name" (blur)="name = $event.target.value">
 <input type="text" [(ngModel)]="name" />
 <button (click)='changeColor()'>Change color</button>
+
+<ul>
+    <li *ngFor="let customer of customers">{{customer.name}}</li>
+</ul>

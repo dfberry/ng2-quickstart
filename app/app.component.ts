@@ -9,6 +9,12 @@ export class AppComponent {
     name = 'test';
     wardsColor = 'blue';
 
+    customers = [
+        {id:1, name:'tom'},
+        {id:2, name:'sue'},
+        {id:3, name:'jill'}
+    ];
+
     //[] property binding
     //[()] - banana in a box - 2 way binding
     //()event binding
