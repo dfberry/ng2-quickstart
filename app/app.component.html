@@ -2,4 +2,7 @@
 <div [style.color]='wardsColor'>
     Hello {{name}}
 </div>
+<!-- keyup, keyup.enter, blur -->
+<input type="text" [value]="name" (blur)="name = $event.target.value">
+<input type="text" [(ngModel)]="name" />
 <button (click)='changeColor()'>Change color</button>

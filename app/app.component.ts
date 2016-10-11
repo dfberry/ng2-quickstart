@@ -10,6 +10,7 @@ export class AppComponent {
     wardsColor = 'blue';
 
     //[] property binding
+    //[()] - banana in a box - 2 way binding
     //()event binding
 
     changeColor(){
