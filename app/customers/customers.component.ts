@@ -1,0 +1,17 @@
+import { Component, OnInit } from '@angular/core';
+import { CustomerComponent } from '../customer/customer.component';
+
+@Component({
+    selector: 'customers-selector',
+    templateUrl: 'app/customers/customers.component.html'
+})
+export class CustomersComponent implements OnInit {
+    customers = [
+        {id:1, name:'tom'},
+        {id:2, name:'sue'},
+        {id:3, name:'jill'}
+    ];
+    constructor(){}
+    ngOnInit(){}
+
+}

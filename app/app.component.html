@@ -6,10 +6,4 @@
 <input type="text" [value]="name" (blur)="name = $event.target.value">
 <input type="text" [(ngModel)]="name" />
 <button (click)='changeColor()'>Change color</button>
-
-<ul>
-    <li *ngFor="let c of customers">
-        <customer-selector [customer]="c"></customer-selector>
-        
-        </li>
-</ul>
+<customers-selector></customers-selector>
