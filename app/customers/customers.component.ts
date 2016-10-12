@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerComponent } from '../customer/customer.component';
 
 @Component({
+    moduleId: module.id,
     selector: 'customers-selector',
-    templateUrl: 'app/customers/customers.component.html'
+    templateUrl: 'customers.component.html'
 })
 export class CustomersComponent implements OnInit {
     customers = [

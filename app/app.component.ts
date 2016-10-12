@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CustomersComponent } from './customers/customers.component';
 @Component({
+    moduleId: module.id,
     selector: 'my-app',
-    templateUrl: 'app/app.component.html'
+    templateUrl: 'app.component.html'
 })
 export class AppComponent { 
     title = 'Blog Log';
