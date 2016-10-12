@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CustomersComponent } from './customers/customers.component';
+import { CustomersComponent } from './customer/customers.component';
 @Component({
-    moduleId: module.id,
+    moduleId: module.id, //system js variable name for relative path
     selector: 'my-app',
     templateUrl: 'app.component.html'
 })
