@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CustomerService } from './customer.service'; // using CustomerService from customers
 
 @Component({
     moduleId: module.id,
