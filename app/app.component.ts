@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
+import { HttpModule  } from '@angular/http';
+
 import { CustomersComponent } from './customer/customers.component';
 import { CustomerService } from './customer/customer.service';
+
 @Component({
     moduleId: module.id, //system js variable name for relative path
     selector: 'my-app',
     templateUrl: 'app.component.html',
-    providers: [CustomerService] // app level providers
+    providers: [CustomerService, HttpModule] // app level providers
 })
 export class AppComponent { 
     title = 'Blog Log';
