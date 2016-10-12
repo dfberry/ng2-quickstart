@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class AppComponent { 
     title = 'Blog Log';
     name = 'test';
-    wardsColor = 'blue';
+    wardsColor = 'green';
 
     customers = [
         {id:1, name:'tom'},
@@ -20,6 +20,6 @@ export class AppComponent {
     //()event binding
 
     changeColor(){
-        this.wardsColor = this.wardsColor === 'blue' ? 'red' : 'blue';
+        this.wardsColor = this.wardsColor === 'green' ? 'red' : 'green';
     }
 }

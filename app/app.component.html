@@ -8,5 +8,9 @@
 <button (click)='changeColor()'>Change color</button>
 
 <ul>
-    <li *ngFor="let customer of customers">{{customer.name}}</li>
+    <li *ngFor="let customer of customers">
+        <span [style.color]="wardsColor">{{customer.id}}&nbsp;</span>
+        <span>{{customer.name}}</span>
+        
+        </li>
 </ul>
