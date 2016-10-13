@@ -3,6 +3,7 @@ import { Observable} from 'rxjs/Rx';
 
 import { CustomerComponent } from './customer.component';
 import { CustomerService } from './customer.service';
+
 @Component({
     moduleId: module.id,
     selector: 'customers-selector',
@@ -18,7 +19,11 @@ export class CustomersComponent implements OnInit {
     // not called automatically by testing
     // but is called by angular
     ngOnInit(){
-        this.customers = this._customerService.getCustomers();
+        this.customers = this._customerService.getCustomers()
+        .catch((err) => {
+            console.log(err);
+            return Observable.of(err); // eating error
+        });
     }
 
 }
