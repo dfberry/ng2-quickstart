@@ -1,8 +1,9 @@
 # To build and run with Docker:
 #
 #  $ docker build -t ng-quickstart .
-#  $ docker run -it --rm -p 3000:3000 -p 3001:3001 ng-quickstart
-#
+#  $ docker run -it -p 3000:3000 -p 3001:3001 -v /Users/dfberry/repos/quickstart:/quickstart -d dfberry/ng2-quickstart tail -f /dev/null
+#  $ docker exec -it 53b3ad840c46 /bin/bash
+
 FROM node:latest
 
 RUN mkdir -p /quickstart /home/nodejs && \
@@ -18,4 +19,7 @@ COPY . /quickstart
 RUN chown -R nodejs:nodejs /quickstart
 USER nodejs
 
-CMD npm start
+CMD [ "npm", "start" ]
+
+
+
