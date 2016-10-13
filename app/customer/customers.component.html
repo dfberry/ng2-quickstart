@@ -1,12 +1,15 @@
 <ul>
     <li *ngFor="let c of customersObservable | async">
         <customer-selector [customer]="c"></customer-selector>
-        
-        </li>
+    </li>
 </ul>
 <ul>
     <li *ngFor="let c of customersPromise | async">
         <customer-selector [customer]="c"></customer-selector>
-        
-        </li>
+    </li>
+</ul>
+<ul>
+    <li *ngFor="let c of customersNoPromise ">
+        <customer-selector [customer]="c"></customer-selector>
+    </li>
 </ul>

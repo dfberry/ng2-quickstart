@@ -13,6 +13,8 @@ import { CustomerService } from './customer.service';
 export class CustomersComponent implements OnInit {
     customersObservable: Observable<any>[];
     customersPromise: Promise<any>[];
+    customersNoPromise: any[];
+
     errorMsg: string;
 
     constructor(private _customerService: CustomerService){}
@@ -29,9 +31,15 @@ export class CustomersComponent implements OnInit {
         this.customersPromise = this._customerService.getCustomersPromise()
         .catch((err) => {
             console.log(err);
-        });        
+        }); 
 
-        console.log("observables & promise - diff variables");
+        this._customerService.getCustomersPromise()
+            .then((customers) => this.customersNoPromise = customers)
+            .catch((err) => {
+                console.log(err);
+            });       
+
+        console.log("observables & promise - 3");
     }
 
 }
