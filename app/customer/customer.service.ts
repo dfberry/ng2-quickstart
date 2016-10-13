@@ -12,12 +12,20 @@ export class CustomerService{
         return this._http.get(URL_CUSTOMER)
         .map((response: Response) => response.json())
         .catch(this._handleErrorObservable);
-
     }
-
     _handleErrorObservable(err:any){
         console.log(err); //log this
         //throw(err);
         return Observable.of(err); // pass back for ux
+    }
+
+    getCustomersPromise(){
+        return this._http.get(URL_CUSTOMER)
+            .map((response:Response) => response.json())
+            .toPromise()
+            .catch((err: any) => {
+                console.log(err);
+                return Promise.reject(err.message)
+            });
     }
 }

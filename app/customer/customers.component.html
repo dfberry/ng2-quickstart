@@ -4,3 +4,9 @@
         
         </li>
 </ul>
+<ul>
+    <li *ngFor="let c of customersPromise | async">
+        <customer-selector [customer]="c"></customer-selector>
+        
+        </li>
+</ul>

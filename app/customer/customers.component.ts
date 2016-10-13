@@ -12,6 +12,7 @@ import { CustomerService } from './customer.service';
 })
 export class CustomersComponent implements OnInit {
     customersObservable: Observable<any>[];
+    customersPromise: Observable<any>[];
     errorMsg: string;
 
     constructor(private _customerService: CustomerService){}
@@ -24,6 +25,14 @@ export class CustomersComponent implements OnInit {
             console.log(err);
             return Observable.of(err); // eating error
         });
+
+        this.customersPromise = this._customerService.getCustomersPromise()
+        .catch((err) => {
+            console.log(err);
+            return Observable.of(err); // eating error
+        });        
+
+        console.log("observables & promise");
     }
 
 }
