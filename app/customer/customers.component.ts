@@ -48,7 +48,7 @@ export class CustomersComponent implements OnInit {
                 console.log(err);
             });       
 
-        console.log("observables & promise - 4");
+        console.log("barrells");
     }
 
 }
