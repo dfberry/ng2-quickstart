@@ -16,8 +16,8 @@ export class CustomerService{
     }
 
     _handleError(err:any){
-        console.log(err);
+        console.log(err); //log this
         //throw(err);
-        return Observable.of(err);
+        return Observable.of(err); // pass back for ux
     }
 }
