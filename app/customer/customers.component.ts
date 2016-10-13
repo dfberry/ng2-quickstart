@@ -14,6 +14,7 @@ export class CustomersComponent implements OnInit {
     customersObservable: Observable<any>[];
     customersPromise: Promise<any>[];
     customersNoPromise: any[];
+    customersSubscribe: Observable<any>[];
 
     errorMsg: string;
 
@@ -22,6 +23,14 @@ export class CustomersComponent implements OnInit {
     // not called automatically by testing
     // but is called by angular
     ngOnInit(){
+
+        this._customerService.getCustomersObservable()
+            .subscribe(
+                (customers ) => this.customersSubscribe = customers,
+                (err) => {console.log(err);}
+            );
+
+
         this.customersObservable = this._customerService.getCustomersObservable()
         .catch((err) => {
             console.log(err);
@@ -39,7 +48,7 @@ export class CustomersComponent implements OnInit {
                 console.log(err);
             });       
 
-        console.log("observables & promise - 3");
+        console.log("observables & promise - 4");
     }
 
 }
