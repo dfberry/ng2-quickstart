@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { Http, Response} from '@angular/http';
-
+import { Observable } from 'rxjs/Rx';
 const URL_CUSTOMER = 'app/customers.json';
 
 @Injectable()
@@ -10,6 +10,14 @@ export class CustomerService{
 
     getCustomers(){
         return this._http.get(URL_CUSTOMER)
-        .map((response: Response) => response.json()); 
+        .map((response: Response) => response.json())
+        .catch(this._handleError);
+
+    }
+
+    _handleError(err:any){
+        console.log(err);
+        //throw(err);
+        return Observable.of(err);
     }
 }
