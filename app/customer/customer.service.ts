@@ -8,14 +8,14 @@ export class CustomerService{
     
     constructor(private _http: Http){}
 
-    getCustomers(){
+    getCustomersObservable(){
         return this._http.get(URL_CUSTOMER)
         .map((response: Response) => response.json())
-        .catch(this._handleError);
+        .catch(this._handleErrorObservable);
 
     }
 
-    _handleError(err:any){
+    _handleErrorObservable(err:any){
         console.log(err); //log this
         //throw(err);
         return Observable.of(err); // pass back for ux

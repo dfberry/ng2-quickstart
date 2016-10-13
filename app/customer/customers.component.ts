@@ -11,7 +11,7 @@ import { CustomerService } from './customer.service';
     providers: [CustomerService]
 })
 export class CustomersComponent implements OnInit {
-    customers: Observable<any>[];
+    customersObservable: Observable<any>[];
     errorMsg: string;
 
     constructor(private _customerService: CustomerService){}
@@ -19,7 +19,7 @@ export class CustomersComponent implements OnInit {
     // not called automatically by testing
     // but is called by angular
     ngOnInit(){
-        this.customers = this._customerService.getCustomers()
+        this.customersObservable = this._customerService.getCustomersObservable()
         .catch((err) => {
             console.log(err);
             return Observable.of(err); // eating error
