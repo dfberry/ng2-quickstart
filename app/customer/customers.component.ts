@@ -30,7 +30,7 @@ export class CustomersComponent implements OnInit {
                 (err) => {console.log(err);}
             );
 
-
+/*
         this.customersObservable = this._customerService.getCustomersObservable()
         .catch((err) => {
             console.log(err);
@@ -41,7 +41,7 @@ export class CustomersComponent implements OnInit {
         .catch((err) => {
             console.log(err);
         }); 
-
+*/
         this._customerService.getCustomersPromise()
             .then((customers) => this.customersNoPromise = customers)
             .catch((err) => {

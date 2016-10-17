@@ -1,6 +1,6 @@
 # To build and run with Docker:
 #
-#  $ docker build -t ng-quickstart .
+#  $ docker build -t ng-quickstart-rxjs .
 #  $ docker run -it -p 3000:3000 -p 3001:3001 -v /Users/dfberry/repos/quickstart:/quickstart -d dfberry/ng2-quickstart tail -f /dev/null
 #  $ docker exec -it 53b3ad840c46 /bin/bash
 
