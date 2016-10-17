@@ -28,5 +28,8 @@ Then run 'npm start'.
 Then put those fns back in. The files should still be watched so tsc runs, but wihtout errors. 
 
 ## ngRx branch
+blog: http://onehungrymind.com/build-better-angular-2-application-redux-ngrx/
+github: https://github.com/onehungrymind/fem-ng2-ngrx-app/blob/simple-data-flow/client/src/app.ts
+
 npm install @angular/core @ngrx/core --save
 npm install @ngrx/store --save
