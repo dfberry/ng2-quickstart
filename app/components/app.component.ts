@@ -9,6 +9,7 @@ interface AppState {
   counter: number;
 }
 
+
 @Component({
     moduleId: module.id, //system js variable name for relative path
     selector: 'my-app',
@@ -16,7 +17,9 @@ interface AppState {
         <button (click)="increment()">Increment</button>
         <div>Current Count: {{ counter | async }}</div>
         <button (click)="decrement()">Decrement</button>
+
         <button (click)="reset()">Reset Counter</button>
+
     `
     ,
     providers: [] // app level providers
