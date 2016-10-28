@@ -7,7 +7,7 @@ import '@ngrx/core';
 import { Store, StoreModule } from '@ngrx/store';
 
 import { AppComponent  }  from './components/app.component';
-import { UrlListComponent, UrlItemComponent, ListComponent, ListItemComponent } from './components/index'
+import { UrlListComponent, UrlItemComponent, ListComponent, ListItemComponent, CounterComponent } from './components/index'
 import {  counterReducer, urlReducer} from './reducers/index';
 
 @NgModule({
@@ -17,7 +17,7 @@ import {  counterReducer, urlReducer} from './reducers/index';
     HttpModule,
     StoreModule.provideStore({counter: counterReducer, urls: urlReducer}) 
     ],
-  declarations: [ AppComponent, UrlItemComponent, UrlListComponent, ListComponent, ListItemComponent],
+  declarations: [ AppComponent, UrlItemComponent, UrlListComponent, ListComponent, ListItemComponent, CounterComponent],
   bootstrap: [ AppComponent]
 })
 export class AppModule { 

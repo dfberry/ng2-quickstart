@@ -6,6 +6,8 @@ export const DECREMENT = 'DECREMENT';
 export const RESET = 'RESET';
 
 export const counterReducer: ActionReducer<number> = (state: number = 0, action: Action) => {
+    console.log("counterReducer action.type " + action.type);
+     console.log(JSON.stringify(state));
     switch (action.type) {
         case INCREMENT:
             return state + 1;
