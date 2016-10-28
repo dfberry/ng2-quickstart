@@ -7,16 +7,19 @@ import '@ngrx/core';
 import { Store, StoreModule } from '@ngrx/store';
 
 import { AppComponent  }  from './components/app.component';
-import { counterReducer } from './reducers/counter';
+import { UrlListComponent, UrlItemComponent, ListComponent, ListItemComponent } from './components/index'
+import {  counterReducer, urlReducer} from './reducers/index';
 
 @NgModule({
   imports: [ 
     BrowserModule, 
     FormsModule, 
     HttpModule,
-    StoreModule.provideStore({counter: counterReducer}) 
+    StoreModule.provideStore({counter: counterReducer, urls: urlReducer}) 
     ],
-  declarations: [ AppComponent],
+  declarations: [ AppComponent, UrlItemComponent, UrlListComponent, ListComponent, ListItemComponent],
   bootstrap: [ AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(){console.log("AppModule");}
+}

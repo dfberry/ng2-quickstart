@@ -17,6 +17,7 @@ export const counterReducer: ActionReducer<number> = (state: number = 0, action:
             return 0;
 
         default:
+            console.log("counterReducer default");
             return state;
     }
 }
