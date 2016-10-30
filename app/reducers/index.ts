@@ -4,6 +4,7 @@ export * from './url';
 
 export interface AppState {
   counter: number;
-  urls : Url[]
+  urls : Url[];
+  nextUrlId: number;
 }
 

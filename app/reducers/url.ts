@@ -1,8 +1,7 @@
 // url.ts
 import { ActionReducer, Action } from '@ngrx/store';
-//export const INCREMENT = 'INCREMENT';
-//export const DECREMENT = 'DECREMENT';
-//export const RESET = 'RESET';
+
+export const ADD_URL = 'ADD_URL';
 
 export interface Url{
     id: number;
@@ -14,12 +13,15 @@ let initialState = function(){
 }
 
 export const urlReducer: ActionReducer<Url[]> = (state: Url[] = initialState(), action: Action) => {
-     console.log("urlReducer action.type " + action.type);
-     console.log(JSON.stringify(state));
      switch (action.type) {
+        case ADD_URL:
+            console.log("urlReducer ADD_URL ");
+          return [
+              ...state,
+              action.payload
+          ];       
         default:
-            console.log("urlReducer default");
-            console.log(state);
+            console.log("urlReducer select/default");
             return state;
     }
 }
