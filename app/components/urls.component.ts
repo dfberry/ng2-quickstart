@@ -8,14 +8,16 @@ import { Store } from '@ngrx/store';
   selector: 'url-new',
   template: `
     <div>
-      <input type="text" #newurl placeholder="Add a url" />
-      <button (click)="save(newurl)">Add</button>
+      <input type="text" [(ngModel)]='name' #newurl placeholder="Add a url" />
+      <button (click)="save(newurl)">Add</button>{{nextId}}
     </div>
   `
 })
 export class UrlNewComponent {
   @Input() nextId:number ;
   @Output() create = new EventEmitter();
+
+  name:string = '';
   itemtype:string = "Url";
 
   constructor(private store: Store<AppState>){
@@ -29,6 +31,9 @@ export class UrlNewComponent {
     console.log("newUrl = " + JSON.stringify(newUrl));
 
     this.store.dispatch({ type: ADD_URL, payload: newUrl});
+
+    this.nextId ++;
+    this.name = '';
   }
   ngOnInit() {
         console.log('UrlNewComponent ngOnInit nextId : ' + this.nextId);
