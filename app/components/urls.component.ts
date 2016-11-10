@@ -90,36 +90,12 @@ export class UrlListComponent {
   @Input() nextId: number;
   @Output() addUrl = new EventEmitter<Url>();
 
+  rows: Array<any>;
   newUrl: Url = {id:0, url:''};
-
-
-  // ng2-table
-  rows: Array<any> = [
-  {
-    'name': 'Victoria Cantrell',
-    'position': 'Integer Corporation',
-    'office': 'Croatia',
-    'ext': '0839',
-    'startDate': '2015/08/19',
-    'salary': 208.178
-  }, {
-    'name': 'Pearl Crosby',
-    'position': 'In PC',
-    'office': 'Cambodia',
-    'ext': '8262',
-    'startDate': '2014/10/08',
-    'salary': 114.367
-  }];
-
   config = {};
-
   columns:Array<any> = [
-    {title: 'Name', name: 'name'},
-    {title: 'Position', name: 'position', sort: false},
-    {title: 'Office', name: 'office', sort: 'asc'},
-    {title: 'Extn.', name: 'ext', sort: ''},
-    {title: 'Start date', name: 'startDate'},
-    {title: 'Salary ($)', name: 'salary'}
+    {title: 'id', name: 'id'},
+    {title: 'url', name: 'url'}
   ];
 
   title: string = 'url-list';
@@ -130,5 +106,6 @@ export class UrlListComponent {
   ngOnInit() {
         console.log('UrlListComponent ngOnInit: ' + this.urls);
         console.log('UrlListComponent ngOnInit nextId : ' + this.nextId);
+         this.rows = this.urls;
   }
 }
