@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { Url, AppState, ADD_URL } from '../reducers/index';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
-
+import { NG_TABLE_DIRECTIVES } from 'ng2-table/ng2-table';
 
 @Component({
   selector: 'url-new',
@@ -11,7 +11,8 @@ import { Store } from '@ngrx/store';
       <input type="text" [(ngModel)]='name' #newurl placeholder="Add a url" />
       <button (click)="save(newurl)">Add</button>{{nextId}}
     </div>
-  `
+  `,
+  providers: [NG_TABLE_DIRECTIVES]
 })
 export class UrlNewComponent {
   @Input() nextId:number ;
@@ -42,7 +43,8 @@ export class UrlNewComponent {
 @Component({
   selector: 'url-detail',
   template: `
-    <div>{{url.id}} . {{url.name}}</div>
+    <div >{{url.id}}</div>
+    <div >{{url.name}}</div>
   `
 })
 export class UrlItemComponent {
@@ -63,7 +65,11 @@ export class UrlItemComponent {
       <div *ngFor="let item of urls">
           <url-detail [url]='item'></url-detail>
       </div>
-      <url-new [nextId]="nextId"></url-new>      
+      <url-new [nextId]="nextId"></url-new>  
+<ng-table [config]="config"
+          [rows]="rows" [columns]="columns">
+</ng-table>         
+
     </div>
   `,
   styles:[`
@@ -77,7 +83,6 @@ export class UrlItemComponent {
   .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
   }
-
   `]
 })
 export class UrlListComponent {
@@ -86,6 +91,36 @@ export class UrlListComponent {
   @Output() addUrl = new EventEmitter<Url>();
 
   newUrl: Url = {id:0, name:''};
+
+
+  // ng2-table
+  rows: Array<any> = [
+  {
+    'name': 'Victoria Cantrell',
+    'position': 'Integer Corporation',
+    'office': 'Croatia',
+    'ext': '0839',
+    'startDate': '2015/08/19',
+    'salary': 208.178
+  }, {
+    'name': 'Pearl Crosby',
+    'position': 'In PC',
+    'office': 'Cambodia',
+    'ext': '8262',
+    'startDate': '2014/10/08',
+    'salary': 114.367
+  }];
+
+  config = {};
+
+  columns:Array<any> = [
+    {title: 'Name', name: 'name'},
+    {title: 'Position', name: 'position', sort: false},
+    {title: 'Office', name: 'office', sort: 'asc'},
+    {title: 'Extn.', name: 'ext', sort: ''},
+    {title: 'Start date', name: 'startDate'},
+    {title: 'Salary ($)', name: 'salary'}
+  ];
 
   title: string = 'url-list';
   constructor(private store: Store<AppState>){
