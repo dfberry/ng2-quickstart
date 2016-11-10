@@ -28,7 +28,7 @@ export class UrlNewComponent {
   save(newurl){
 
 
-    let newUrl: Url = {id: this.nextId, name: newurl.value };
+    let newUrl: Url = {id: this.nextId, url: newurl.value };
     console.log("newUrl = " + JSON.stringify(newUrl));
 
     this.store.dispatch({ type: ADD_URL, payload: newUrl});
@@ -44,7 +44,7 @@ export class UrlNewComponent {
   selector: 'url-detail',
   template: `
     <div >{{url.id}}</div>
-    <div >{{url.name}}</div>
+    <div >{{url.url}}</div>
   `
 })
 export class UrlItemComponent {
@@ -90,7 +90,7 @@ export class UrlListComponent {
   @Input() nextId: number;
   @Output() addUrl = new EventEmitter<Url>();
 
-  newUrl: Url = {id:0, name:''};
+  newUrl: Url = {id:0, url:''};
 
 
   // ng2-table

@@ -5,11 +5,11 @@ export const ADD_URL = 'ADD_URL';
 
 export interface Url{
     id: number;
-    name: string;
+    url: string;
 }
 
 let initialState = function(){
-    return [{id:1, name:"Dina"},{id:2, name:"Wayne"},{id:3,name:"kids"}];
+    return [{id:1, url:"Dina"},{id:2, url:"Wayne"},{id:3,url:"kids"}];
 }
 
 export const urlReducer: ActionReducer<Url[]> = (state: Url[] = initialState(), action: Action) => {
