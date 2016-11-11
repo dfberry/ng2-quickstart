@@ -1,6 +1,6 @@
 # Dockerfile 
 #  $ docker build -t ngrx-counter .
-#  $ docker run -it -p 3000:3000 -v /Users/dfberry/repos/:/home/nodejs/repos/ ngrx-counter 
+#  $ docker run -it -p 3000:3000 -p 3004:3004 -v /Users/dfberry/repos/:/home/nodejs/repos/ ngrx-counter 
 
 
 # base image 
