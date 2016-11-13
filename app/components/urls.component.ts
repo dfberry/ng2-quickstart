@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
-import { Url, AppState, ADD_URL } from '../reducers/index';
+import { Url, AppState, ADD_URL, UrlService } from '../reducers/index';
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { NG_TABLE_DIRECTIVES } from 'ng2-table/ng2-table';
@@ -21,23 +21,23 @@ export class UrlNewComponent {
   name:string = '';
   itemtype:string = "Url";
 
-  constructor(private store: Store<AppState>){
+  constructor(private urlService: UrlService, private store: Store<AppState>){
     console.log("UrlNewComponent constructor nextId = " + this.nextId);
   }
 
   save(newurl){
 
-
     let newUrl: Url = {id: this.nextId, url: newurl.value };
-    console.log("newUrl = " + JSON.stringify(newUrl));
+    //console.log("newUrl = " + JSON.stringify(newUrl));
 
-    this.store.dispatch({ type: ADD_URL, payload: newUrl});
+    //this.store.dispatch({ type: ADD_URL, payload: newUrl});
+    this.urlService.insertItem(newUrl);
 
     this.nextId ++;
     this.name = '';
   }
   ngOnInit() {
-        console.log('UrlNewComponent ngOnInit nextId : ' + this.nextId);
+        //console.log('UrlNewComponent ngOnInit nextId : ' + this.nextId);
   }
 }
 @Component({
