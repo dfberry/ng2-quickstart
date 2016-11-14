@@ -5,6 +5,7 @@ well as an http data example.
 ## Install 
 ```
 npm install
+typings install -g 
 npm start
 ```
 ## Usage
@@ -39,3 +40,6 @@ http://localhost:4200
 [https://github.com/ngrx/example-app.git](https://github.com/ngrx/example-app.git)
 [https://github.com/btroncone/ngrx-examples](https://github.com/btroncone/ngrx-examples)
 [https://github.com/onehungrymind/fem-ng2-ngrx-app](https://github.com/onehungrymind/fem-ng2-ngrx-app)
+
+##NPM Package Versions
+The package versions in ./package.json are hard set so the repo will start. Other versions of dependencies may make this repo unusable. 
