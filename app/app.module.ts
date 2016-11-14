@@ -7,8 +7,7 @@ import '@ngrx/core';
 import { Store, StoreModule } from '@ngrx/store';
 import { Ng2TableModule } from 'ng2-table/ng2-table';
 
-import { AppComponent, UrlListComponent, UrlItemComponent, ListComponent, 
-  ListItemComponent, CounterComponent, UrlNewComponent } from './components/index'
+import { AppComponent, UrlListComponent, UrlItemComponent, CounterComponent, UrlNewComponent } from './components/index'
 import {  counterReducer, urlReducer, UrlService} from './reducers/index';
 import { HttpDataService } from './services/index';
 
@@ -22,7 +21,7 @@ import { HttpDataService } from './services/index';
     ],
   declarations: [ 
     AppComponent, UrlItemComponent, UrlListComponent, 
-    ListComponent, ListItemComponent, CounterComponent, UrlNewComponent ],
+    CounterComponent, UrlNewComponent ],
   providers: [
     UrlService, HttpDataService
   ],

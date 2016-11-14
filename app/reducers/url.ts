@@ -9,46 +9,43 @@ import { AppState } from './index';
 export const ADD_URL = 'ADD_URL';
 export const ADD_URLS = 'ADD_URLS';
 export const DELETE_URL = 'DELETE_URL';
-export const SELECT_NEXT_ID = 'SELECT_NEXT_ID';
 
+/** Url definition
+ * id: currently next numeric value
+ * url: string - currently no checking for valid url string
+ */
 export interface Url{
     id: number;
     url: string;
 }
+/** 
 
-let initialState = function(){
-    return [{id:1, url:"Dina"},{id:2, url:"Wayne"},{id:3,url:"kids"}];
-}
+    Url NGRX reducer
+    @constructor - initialized to empty array
+    @param {array} Url - array of current Urls 
+    @param {object} action - type of action to apply to current state
 
-export const urlReducer: ActionReducer<Url[]> = (state: Url[] = initialState(), action: Action) => {
+*/
+export const urlReducer: ActionReducer<Url[]> = (state: Url[] = [], action: Action) => {
+
+    console.log("urlReducer " + action.type);
+
      switch (action.type) {
-        case ADD_URL:console.log("urlReducer ADD_URL ");
+        case ADD_URL:
           return [
               ...state,
               action.payload
           ];       
         case ADD_URLS:
-            //console.log("urlReducer ADD_URLS action.payload = " + JSON.stringify(action.payload));
           return action.payload;       
-        case DELETE_URL:
-            //console.log("urlReducer delete");
-            return state;
         default:
-            //console.log("urlReducer select/default");
             return state;
     }
 }
-
-export const urlNextIdReducer = (state: any = 0, {type, payload}) => {
-  switch (type) {
-    case 'SELECT_NEXT_ID':
-        console.log("nextId " + payload);
-      return payload;
-    default:
-      return state;
-  }
-};
-
+/**
+ * Represents Url state
+ * this should be the only entry/exit point for manipulating state
+ */
 @Injectable()
 export class UrlService{
 
@@ -57,44 +54,40 @@ export class UrlService{
     public next: Observable<number>;
 
     constructor(private store:Store<AppState>, private _httpDataService: HttpDataService){
-        //console.log("UrlService::c'tor");
         this.items = store.select(state => state.urls);
-        this.next = store.select(state => state.nextUrlId);
     }
 
-
+    // get list for json-server 
     loadItems(){
         console.log("loadItems");
-        const baseUrl = 'http://localhost:4200/db';
+        const baseUrl = 'http://localhost:4200/url';
         let initialItems: Url[];
 
         this._httpDataService.getJsonPromise(baseUrl)
             .then(data => {
-                let thisUrls = data.url;
-                //console.log("UrlServiceLoadItems " + JSON.stringify(thisUrls));
+                let thisUrls = data;
                 let len = thisUrls.length;
                 let next = len + 1;
-                //console.log("NextId = " + next);
                 this.store.dispatch({type: ADD_URLS, payload: thisUrls});
-                this.store.dispatch({type: SELECT_NEXT_ID, payload: next});
         });
     }
     // if response from post is equal to url
     // then it was successful
     insertItem(url:Url){
-        let newUrl:Url;
-        let postUrl: 'http://localhost:4200/url';
-        //this._httpDataService.postJsonData(postUrl, JSON.stringify(url), null)
+        console.log("UrlService::insertItem " + JSON.stringify(url));
+        const postUrl: string =  'http://localhost:4200/url';
 
-        return this._httpDataService.postJsonData(postUrl, JSON.stringify(url), null)
+        return this._httpDataService.postJsonData(postUrl, url, null)
             .then((data) => {
-                newUrl = data;
-                JSON.stringify(newUrl) == JSON.stringify(url) ? this.insertToStore(newUrl) : false;
+                console.log("UrlService::insertItem insert returned with " + JSON.stringify(data));
+                JSON.stringify(data) == JSON.stringify(url) ? this.insertToStore(data) : false;
             })
             .catch((err) => {
                 console.log(err);
             });
     }
+
+    // tell store about change
     private insertToStore(url){
         this.store.dispatch({ type: ADD_URL, payload: url});
     }

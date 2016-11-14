@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { NG_TABLE_DIRECTIVES } from 'ng2-table/ng2-table';
 
+/***************************************************************************/
 @Component({
   selector: 'url-new',
   template: `
@@ -16,30 +17,23 @@ import { NG_TABLE_DIRECTIVES } from 'ng2-table/ng2-table';
 })
 export class UrlNewComponent {
   @Input() nextId:number ;
-  @Output() create = new EventEmitter();
-
   name:string = '';
   itemtype:string = "Url";
 
-  constructor(private urlService: UrlService, private store: Store<AppState>){
-    console.log("UrlNewComponent constructor nextId = " + this.nextId);
-  }
+  constructor(private urlService: UrlService){}
 
   save(newurl){
-
     let newUrl: Url = {id: this.nextId, url: newurl.value };
-    //console.log("newUrl = " + JSON.stringify(newUrl));
-
-    //this.store.dispatch({ type: ADD_URL, payload: newUrl});
     this.urlService.insertItem(newUrl);
 
     this.nextId ++;
     this.name = '';
   }
   ngOnInit() {
-        //console.log('UrlNewComponent ngOnInit nextId : ' + this.nextId);
+        console.log('UrlNewComponent ngOnInit nextId : ' + this.nextId);
   }
 }
+/***************************************************************************/
 @Component({
   selector: 'url-detail',
   template: `
@@ -53,9 +47,11 @@ export class UrlItemComponent {
 
   ngOnInit() {
         console.log('UrlItemComponent input: ' + this.url);
+
     }
 
 }
+/***************************************************************************/
 @Component({
   selector: 'url-list',
   template: `
@@ -65,11 +61,13 @@ export class UrlItemComponent {
       <div *ngFor="let item of urls">
           <url-detail [url]='item'></url-detail>
       </div>
-      <url-new [nextId]="nextId"></url-new>  
+      <br><b>Url Table</b>
+      
 <ng-table [config]="config"
-          [rows]="rows" [columns]="columns">
+          [rows]="urls" [columns]="columns">
 </ng-table>         
-
+    <br><b>New Url</b>
+    <url-new [nextId]="nextId"></url-new>  
     </div>
   `,
   styles:[`
@@ -104,8 +102,7 @@ export class UrlListComponent {
   }
 
   ngOnInit() {
-        console.log('UrlListComponent ngOnInit: ' + this.urls);
+        console.log('UrlListComponent ngOnInit: ' + JSON.stringify(this.urls));
         console.log('UrlListComponent ngOnInit nextId : ' + this.nextId);
-         this.rows = this.urls;
   }
 }
