@@ -12,9 +12,10 @@ RUN mkdir -p /home/nodejs/repos && \
     chown -R nodejs:nodejs /home/nodejs
 
 WORKDIR /home/nodejs/repos
+
 RUN git clone -b rxjs-store https://github.com/dfberry/ng2-quickstart counter && cd counter
 RUN npm install --unsafe-perm=true
-
+RUN npm install -g npm-check-updates
 USER nodejs
 
 CMD npm start
