@@ -59,7 +59,6 @@ export class UrlService{
 
     // get list for json-server 
     loadItems(){
-        console.log("loadItems");
         const baseUrl = 'http://localhost:4200/url';
         let initialItems: Url[];
 
@@ -74,12 +73,10 @@ export class UrlService{
     // if response from post is equal to url
     // then it was successful
     insertItem(url:Url){
-        console.log("UrlService::insertItem " + JSON.stringify(url));
         const postUrl: string =  'http://localhost:4200/url';
 
         return this._httpDataService.postJsonData(postUrl, url, null)
             .then((data) => {
-                console.log("UrlService::insertItem insert returned with " + JSON.stringify(data));
                 JSON.stringify(data) == JSON.stringify(url) ? this.insertToStore(data) : false;
             })
             .catch((err) => {

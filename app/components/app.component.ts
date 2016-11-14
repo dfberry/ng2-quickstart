@@ -22,7 +22,9 @@ export class AppComponent {
     urls: Url[];
     nextId: number;
 
-    constructor(private urlService: UrlService, private store: Store<AppState>){
+    constructor(private urlService: UrlService, private store: Store<AppState>){}
+
+    ngOnInit() {
         // get from http, put in state
         this.urlService.loadItems();
 
@@ -32,22 +34,20 @@ export class AppComponent {
             .subscribe(data => this.onCounterEmitted(data));
         this.store.select(state => state.urls)
           .distinctUntilChanged()
-          .subscribe(data => this.onUrlsEmitted(data));    }
-
-    ngOnInit() {
-        console.log('AppComponent constructor');
+          .subscribe(data => this.onUrlsEmitted(data));    
      }
+
     // executed once user data arrives from the store
     public onUrlsEmitted(data:Url[]){
-        console.log('AppComponent onUrlsEmitted ' + data);
         this.urls = data;
         this.nextId = this.urls.length + 1;
         this.printOutState("urls", this.urls);
     }
     public onCounterEmitted(data){
-        console.log('AppComponent onCounterEmitted data = ' + data);
         this.counter = data;
     }
+
+    // DEBUG
     private printOutState(arrName:string, arr: any[]){
         for(let i =0; i < arr.length; i++){
             console.log(arrName + " " + i + " = " + JSON.stringify(arr[i]));

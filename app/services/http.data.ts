@@ -9,7 +9,6 @@ export class HttpDataService{
     constructor(private _http: Http){}
 
     getJsonObservable(url){
-        console.log("getJsonObservable " + url);
         return this._http.get(url)
         .map((response: Response) => response.json())
         .catch(this._handleErrorObservable);
@@ -20,9 +19,6 @@ export class HttpDataService{
         return Observable.of(err); // pass back for ux
     }
     getJsonPromise(url){
-
-        console.log("getJsonPromise " + url);
-
         return this._http.get(url)
             .map((response:Response) => response.json())
             .toPromise()
@@ -32,10 +28,6 @@ export class HttpDataService{
             });
     }
     postJsonData(url, body, options ){
- 
-        console.log("HttpDataService::postJsonData " + url);
-        console.log("HttpDataService::postJsonData " + JSON.stringify(body));
-
         return this._http.post(url, body, options ? options : this.getDefaultPostOptions())
            .map(res =>  res.json())
            .toPromise()
@@ -46,8 +38,9 @@ export class HttpDataService{
     }
 
     getDefaultPostOptions(){
-       var headers = new Headers();
+        var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+
         let options = new RequestOptions({ headers: headers });
         return options;
     }

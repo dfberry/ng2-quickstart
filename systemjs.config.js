@@ -26,8 +26,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       '@ngrx/core':                     'npm:@ngrx/core',
-      '@ngrx/store':                     'npm:@ngrx/store',
-      'ng2-table':         'npm:ng2-table'
+      '@ngrx/store':                     'npm:@ngrx/store'
       
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -46,10 +45,7 @@
       '@ngrx/store': {
         main: 'bundles/store.min.umd.js',
         format: 'cjs'
-    },
-      'ng2-table': {
-        main: 'bundles/ng2-table.js'
-      },  
+    } 
 }
   });
 })(this);

@@ -12,6 +12,7 @@ import { Store } from '@ngrx/store';
         <button (click)="change()">Change to 10</button>
         <button (click)="reset()">Reset Counter</button>
         </div>
+        
   `
   ,
     styles:[`
@@ -22,29 +23,13 @@ import { Store } from '@ngrx/store';
 export class CounterComponent {
   @Input() counter: number;
 
-    constructor(private store: Store<AppState>){
-    }
+    constructor(private store: Store<AppState>){}
 
-    change(){
-        console.log("counter.component change");
-        this.store.dispatch({ type: CHANGE_COUNTER, payload: 10 });
-    }
+    change(){ this.store.dispatch({ type: CHANGE_COUNTER, payload: 10 });}
 
-    increment(){
-        console.log("counter.component increment");
-        this.store.dispatch({ type: INCREMENT_COUNTER,  });
-    }
+    increment(){this.store.dispatch({ type: INCREMENT_COUNTER,  });}
 
-    decrement(){
-        console.log("counter.component decrement");
-        this.store.dispatch({ type: DECREMENT_COUNTER });
-    }
+    decrement(){this.store.dispatch({ type: DECREMENT_COUNTER });}
 
-    reset(){
-        console.log("counter.component reset");
-        this.store.dispatch({ type: RESET_COUNTER });
-    }
-    ngOnInit() {
-        console.log('CounterComponent input: ' + this.counter);
-    }
+    reset(){this.store.dispatch({ type: RESET_COUNTER });}
 }
